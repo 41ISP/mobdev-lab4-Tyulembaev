@@ -1,7 +1,7 @@
 import axios from "axios";
-import { ICat } from "../models/cat";
+import { ICat, ICatImage } from "../models/cat";
 
-const BaseUrl = "https://cataas.com/"
+const BaseUrl = "https://cataas.com"
 
 const CATApiInstanse = axios.create()
 
@@ -16,9 +16,7 @@ const CATApi = {
         return response.data;
     },
     GetPhotoOfCat : async (id : string) => {
-        return CATApiInstanse.get("/cat/" + id, {
-            baseURL : BaseUrl
-        })
+        return `${BaseUrl}/cat/${id}`;
     }
 
 }

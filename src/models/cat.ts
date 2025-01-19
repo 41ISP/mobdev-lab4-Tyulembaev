@@ -6,3 +6,7 @@ export interface ICat {
     size: Number,
     _id : string
 }
+
+export interface ICatImage{
+    url:string
+}
