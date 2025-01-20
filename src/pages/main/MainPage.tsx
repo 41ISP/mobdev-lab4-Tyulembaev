@@ -1,17 +1,22 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import LikedIcon from '../../components/LikedIcon';
 import './MainPage.css'
 import CATApi from '../../shared/api';
 
 const MainPage = () => {
     const [imageSrc, setImageSrc] = useState("../../../emptycat.jpg")
-    const [loading, setLoading] = useState(false) //TODO set this on true
+    const [catId, setCatId] = useState('')
+    
+    const [loading, setLoading] = useState(true) //TODO set this on true
     const [error, setError] = useState(false)
+
+    
 
     const fetchImage = async ()=>
     {
         try{
             const randomCat = await CATApi.GetRandomCat();
+            setCatId(randomCat._id);
             const catUrl = await CATApi.GetPhotoOfCat(randomCat._id);
             setImageSrc(catUrl);
             setLoading(false);
@@ -51,7 +56,7 @@ const MainPage = () => {
             </div>
             <div className="body_container">
                 <img src={imageSrc}/>
-                <LikedIcon/>
+                <LikedIcon id = {catId}/>
                 <button onClick={handleNextButton}>Next</button>
             </div>
         </div>
