@@ -1,14 +1,21 @@
 
 
+import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css'
+import FavouriteCatsPage from './pages/FavouriteCatsPage/FavouriteCatsPage';
 import MainPage from './pages/main/MainPage';
+import Navbar from './components/Navbar';
 
-function App() {
-
+const App: React.FC = () => {
   return (
-    <div>
-        <MainPage></MainPage>
-    </div>
+    <Router>
+      <Navbar/>
+
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/gallery" element={<FavouriteCatsPage />} />
+      </Routes>
+    </Router>
   );
 }
 

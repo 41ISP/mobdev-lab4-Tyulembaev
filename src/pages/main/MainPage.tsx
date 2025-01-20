@@ -40,9 +40,6 @@ const MainPage = () => {
     if(loading)
         return (        
         <div className="main_container">
-            <div className="topper_container">
-                
-            </div>
             <div className="body_container">
                 <img src={imageSrc}/>
                 <h1>Ищем кота для вас</h1>
