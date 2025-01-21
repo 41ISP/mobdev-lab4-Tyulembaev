@@ -17,6 +17,8 @@ export const useCatStore = create<CatState>()(
         removeCat: (id) => set((state) => ({catsId: state.catsId.filter(item => item !== id)})),
         isLikedCat : (id) => {
             const {catsId} = get()
+            console.log(id)
+            console.log(catsId.includes(id))
             return catsId.includes(id);
         }
     }),
