@@ -7,14 +7,20 @@ import { useCatStore } from '../../shared/useCatStore';
 const MainPage = () => {
     const [imageSrc, setImageSrc] = useState("../../../emptycat.jpg")
     const [catId, setCatId] = useState('')
-
-    const isLikedCat = useCatStore((state) => state.isLikedCat);
-    const [isLiked, setIsLiked] = useState(false)
     
     const [loading, setLoading] = useState(true) //TODO set this on true
     const [error, setError] = useState(false)
 
-    
+        const { catsId, addCat, removeCat, isLikedCat }= useCatStore();
+        const [isLiked, setIsLiked] = useState(false)
+
+    const onClickLikedIcon = (id:string) => {
+        if(!isLiked)
+            addCat(id);
+        else
+            removeCat(id)
+        setIsLiked(!isLiked);
+    }
 
     const fetchImage = async ()=>
     {
@@ -32,6 +38,7 @@ const MainPage = () => {
     }
     const handleNextButton = () => {
         fetchImage();
+        setIsLiked(false);
         console.log('next cat')
     }
     useEffect( () => {
@@ -58,7 +65,7 @@ const MainPage = () => {
             </div>
             <div className="body_container">
                 <img src={imageSrc}/>
-                <LikedIcon id = {catId} liked={isLiked}/>
+                <LikedIcon id = {catId} liked={isLiked} onClick={onClickLikedIcon}/>
                 <button onClick={handleNextButton}>Next</button>
             </div>
         </div>

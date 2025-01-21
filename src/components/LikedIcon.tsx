@@ -4,23 +4,19 @@ import  {useCatStore} from '../shared/useCatStore'
 
 interface Props {
     id:string,
-    liked : boolean
+    liked:boolean,
+    onClick: (id:string) => void
 }
 
-const LikedIcon: React.FC<Props> = ({ id, liked }) => {
-    const { catsId, addCat, removeCat, isLikedCat }= useCatStore();
-    const [isLiked, setIsLiked] = useState(liked)
+const LikedIcon: React.FC<Props> = ({ id , liked, onClick}) => {
+
 
     const handleLiked = () => {
-        if(!isLiked)
-            addCat(id);
-        else
-            removeCat(id)
-        setIsLiked(!isLiked);
+        onClick(id);
     }
     
     return (
-        <img onClick={handleLiked}className='liked_image' src={isLiked ? "../../../liked.png": "../../../unliked.png"}/>
+        <img onClick={handleLiked}className='liked_image' src={liked ? "../../../liked.png": "../../../unliked.png"}/>
     )
 }
 
