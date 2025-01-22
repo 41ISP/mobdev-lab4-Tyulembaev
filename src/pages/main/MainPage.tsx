@@ -11,8 +11,8 @@ const MainPage = () => {
     const [loading, setLoading] = useState(true) //TODO set this on true
     const [error, setError] = useState(false)
 
-        const { catsId, addCat, removeCat, isLikedCat }= useCatStore();
-        const [isLiked, setIsLiked] = useState(false)
+    const { catsId, addCat, removeCat, isLikedCat }= useCatStore();
+    const [isLiked, setIsLiked] = useState(false)
 
     const onClickLikedIcon = (id:string) => {
         if(!isLiked)
